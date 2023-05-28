@@ -6,17 +6,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>skkucert</title>
     <script type="text/javascript" src="script.js"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+
+        #login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+            width: 100%;
+            max-width: 400px;
+            padding: 1em;
+            box-sizing: border-box;
+        }
+
+        #login-form input[type="text"],
+        #login-form input[type="password"],
+        #login-form button {
+            width: 100%;
+            padding: 0.5em;
+            font-size: 1em;
+            box-sizing: border-box;
+        }
+
+        #response {
+            margin-top: 2em;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        #loading {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <form id="login-form">
-        <input type="text" id="user-id" placeholder="Enter your ID" required/>
-        <input type="password" id="user-pw" placeholder="Enter your Password" required/>
-        <button type="submit">Submit</button>
+        <select id="language-select">
+            <option value="en">English</option>
+            <option value="ko">Korean</option>
+        </select>
+        <input type="text" id="user-id" placeholder="킹고ID를 입력하세요" required/>
+        <input type="password" id="user-pw" placeholder="킹고 비밀번호를 입력하세요" required/>
+        <button type="submit" id="submit-button">로그인</button>
     </form>
+
+    <div id="loading">Loading...</div>
     
     <div id="response">
         <!-- This is where the response will be shown -->
     </div>
 </body>
 </html>
-    
