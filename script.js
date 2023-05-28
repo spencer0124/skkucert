@@ -1,4 +1,17 @@
 document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('language-select').addEventListener('change', function(e) {
+        var language = e.target.value;
+        if (language === 'en') {
+            document.getElementById('user-id').placeholder = 'Enter your ID';
+            document.getElementById('user-pw').placeholder = 'Enter your Password';
+            document.getElementById('submit-button').innerText = 'Submit';
+        } else {
+            document.getElementById('user-id').placeholder = '킹고ID를 입력하세요';
+            document.getElementById('user-pw').placeholder = '킹고 비밀번호를 입력하세요';
+            document.getElementById('submit-button').innerText = '로그인';
+        }
+    });
+
     document.getElementById('login-form').addEventListener('submit', function(e) {
         e.preventDefault();
 
@@ -11,6 +24,9 @@ document.addEventListener('DOMContentLoaded', function() {
             "password": userPw,
             "rememberMe": true
         };
+
+        // Show loading message
+        document.getElementById('loading').style.display = 'block';
 
         fetch('https://lib.skku.edu/pyxis-api/api/login', {
             method: 'POST',
@@ -33,6 +49,9 @@ document.addEventListener('DOMContentLoaded', function() {
             return response.json();
         })
         .then(data => {
+            // Hide loading message
+            document.getElementById('loading').style.display = 'none';
+
             if (data.data && data.data.name && data.data.dept && data.data.branchGroup && data.data.memberNo && data.data.patronState) {
                 document.getElementById('response').innerHTML = 
                 `Name: ${data.data.name}<br>
@@ -50,6 +69,8 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .catch(error => {
             console.error('Error:', error);
+            // Hide loading message
+            document.getElementById('loading').style.display = 'none';
             document.getElementById('response').innerHTML = '<strong>Status: Login Failed</strong>';
         });
     });
