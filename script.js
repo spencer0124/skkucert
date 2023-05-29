@@ -33,12 +33,9 @@ document.addEventListener('DOMContentLoaded', function() {
             headers: {
                 "Host": "lib.skku.edu",
                 "Content-Type": "application/json;charset=utf-8",
-                "Origin": "file://",
                 "Connection": "keep-alive",
                 "Accept": "application/json, text/plain, */*",
                 "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 16_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148",
-                "Accept-Language": "ko",
-                "Accept-Encoding": "gzip, deflate, br",
             },
             body: JSON.stringify(payload)
         })
@@ -51,6 +48,9 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(data => {
             // Hide loading message
             document.getElementById('loading').style.display = 'none';
+            
+            document.getElementById('response').innerHTML = `data`;
+            
 
             if (data.data && data.data.name && data.data.dept && data.data.branchGroup && data.data.memberNo && data.data.patronState) {
                 document.getElementById('response').innerHTML = 
