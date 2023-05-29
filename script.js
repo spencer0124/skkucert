@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 "Content-Type": "application/json;charset=utf-8",
                 "Connection": "keep-alive",
                 "Accept": "application/json, text/plain, */*",
-                "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 16_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148",
+                
             },
             body: JSON.stringify(payload)
         })
