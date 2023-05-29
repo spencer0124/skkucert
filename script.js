@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Hide loading message
             document.getElementById('loading').style.display = 'none';
             
-            document.getElementById('data').innerHTML = `S{data}`;
+            
             
 
             if (data.data && data.data.name && data.data.dept && data.data.branchGroup && data.data.memberNo && data.data.patronState) {
