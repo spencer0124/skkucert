@@ -37,15 +37,38 @@ document.addEventListener('DOMContentLoaded', function() {
             
 
             if (data.data && data.data.name && data.data.dept && data.data.branchGroup && data.data.memberNo && data.data.patronState) {
-                document.getElementById('response').innerHTML = 
-                `[이름]: ${data.data.name}<br>
-                [학부]: ${data.data.dept.name}<br>
-                [소속]: ${data.data.parentDept.name}<br>
-                [유형]: ${data.data.patronType.name}<br>
-                [캠퍼스]: ${data.data.branchGroup.name}<br>
-                [학번]: ${data.data.memberNo}<br>
-                [재학 여부]: ${data.data.patronState.name}<br>
-                <img src="https://idcard.skku.edu/idt/photo.do?userId=${data.data.memberNo}" alt="User Photo"/>`;
+                // document.getElementById('response').innerHTML = 
+                // `[이름]: ${data.data.name}<br>
+                // [학부]: ${data.data.dept.name}<br>
+                // [소속]: ${data.data.parentDept.name}<br>
+                // [유형]: ${data.data.patronType.name}<br>
+                // [캠퍼스]: ${data.data.branchGroup.name}<br>
+                // [학번]: ${data.data.memberNo}<br>
+                // [재학 여부]: ${data.data.patronState.name}<br>
+                // <img src="https://idcard.skku.edu/idt/photo.do?userId=${data.data.memberNo}" alt="User Photo"/>`;
+
+                var qrData = {
+                    1: data.data.name,
+                    2: data.data.dept.name,
+                    4: data.data.patronType.name,
+                    5: data.data.branchGroup.name,
+                    6: data.data.memberNo,
+                    7: data.data.patronState.name
+                };
+
+                var qrCodeContainer = document.getElementById('response');
+                qrCodeContainer.innerHTML = '';
+
+                var encoder = new TextEncoder();
+                var encodedData = encoder.encode(JSON.stringify(qrData));
+                var base64Data = window.btoa(String.fromCharCode.apply(null, encodedData));
+                
+                var qrCode = new QRCode(qrCodeContainer.appendChild(document.createElement('div')), {
+                    text: base64Data,
+                    width: 200,
+                    height: 200
+                });
+
             } else {
                 document.getElementById('response').innerHTML = '<strong>로그인에 실패하였습니다</strong>';
             }
